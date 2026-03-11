@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // --- Theme Toggle Logic ---
     const themeToggle = document.getElementById('theme-toggle');
