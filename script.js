@@ -1,6 +1,3 @@
-/* ============================================================
-   BIMALA TRADING — Main JavaScript Logic
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Theme Toggle Logic ---

@@ -4,28 +4,50 @@
 
 /* --- CSS Variables / Themes --- */
 :root {
-    --bg-primary: #0D1117;
-    --bg-secondary: #161B22;
-    --text-primary: #FFFFFF;
-    --text-secondary: #8B949E;
-    --accent-blue: #1E3A8A;
-    --accent-primary: #3B82F6;
-    --accent-glow: rgba(59, 130, 246, 0.15);
-    --nav-bg: rgba(13, 17, 23, 0.82);
-    --card-bg: #1C2128;
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-blue-deep: #1e3a8a;
+    --accent-primary: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    --nav-bg: rgba(2, 6, 23, 0.85);
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --border-color: rgba(148, 163, 184, 0.1);
     --transition-speed: 0.4s;
+    
+    /* Gradients */
+    --grad-hero: linear-gradient(135deg, #020617 0%, #1e3a8a 100%);
+    --grad-about: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    --grad-projects: linear-gradient(135deg, #0f172a 0%, #172554 100%);
+    --grad-services: linear-gradient(to bottom, #020617, #1e3a8a);
+    --grad-contact: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    --grad-footer: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    --input-bg: rgba(2, 6, 23, 0.4);
 }
 
 [data-theme="light"] {
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F6F8FA;
-    --text-primary: #0D1117;
-    --text-secondary: #57606A;
-    --accent-blue: #1E3A8A;
-    --accent-primary: #2563EB;
-    --accent-glow: rgba(37, 99, 235, 0.1);
-    --nav-bg: rgba(255, 255, 255, 0.8);
-    --card-bg: #FFFFFF;
+    --bg-primary: #f0f9ff;
+    --bg-secondary: #e0f2fe;
+    --text-primary: #0c4a6e;
+    --text-secondary: #334155;
+    --accent-blue-deep: #0369a1;
+    --accent-primary: #0284c7;
+    --accent-light: #38bdf8;
+    --accent-glow: rgba(2, 132, 199, 0.15);
+    --nav-bg: rgba(240, 249, 255, 0.9);
+    --card-bg: #ffffff;
+    --border-color: rgba(2, 132, 199, 0.15);
+
+    /* Light Theme Gradients - Using solid blue tints */
+    --grad-hero: linear-gradient(135deg, #f0f9ff 0%, #bae6fd 100%);
+    --grad-about: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+    --grad-projects: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    --grad-services: linear-gradient(to bottom, #f0f9ff, #e0f2fe);
+    --grad-contact: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+    --grad-footer: linear-gradient(180deg, #0c4a6e 0%, #075985 100%);
+    --input-bg: rgba(255, 255, 255, 0.9);
 }
 
 /* --- Reset & Base --- */
@@ -112,17 +134,16 @@ nav .container {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     font-size: 1.5rem;
     color: var(--text-primary);
     text-decoration: none;
     font-weight: bold;
 }
 
-.logo svg {
-    width: 30px;
-    height: 30px;
-    fill: var(--accent-primary);
+.logo img {
+    border-radius: 6px;
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .nav-links {
@@ -225,16 +246,13 @@ nav .container {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(13, 17, 23, 0.7), rgba(13, 17, 23, 0.7)), url('bimala trading assests/hero-bg.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: var(--grad-hero);
     position: relative;
     overflow: hidden;
 }
 
 [data-theme="light"] .hero {
-    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('bimala trading assests/hero-bg.png');
+    background: var(--grad-hero);
 }
 
 .hero-content {
@@ -292,39 +310,75 @@ nav .container {
     clip-path: polygon(0 100%, 100% 100%, 100% 0);
 }
 
-/* --- About Section --- */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+#about {
+    background: var(--grad-about);
 }
 
 .about-text h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-primary);
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- About Section (Legacy) --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .stat-item {
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-left: 4px solid var(--accent-primary);
+    padding: 2.5rem 1.5rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+.stat-item:nth-child(even) {
+    transform: translateY(20px);
+}
+
+.stat-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 45px var(--accent-glow);
 }
 
 .stat-number {
     display: block;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-family: 'Bebas Neue';
-    color: var(--accent-primary);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
 
@@ -335,15 +389,17 @@ nav .container {
     color: var(--text-secondary);
 }
 
-/* --- Projects Section --- */
-.section-header {
-    text-align: center;
-    margin-bottom: 4rem;
+#projects {
+    background: var(--grad-projects);
 }
 
 .section-header h2 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--text-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .section-header p {
@@ -529,6 +585,14 @@ nav .container {
     color: #ddd;
 }
 
+#services {
+    background: var(--grad-services);
+}
+
+#gallery {
+    background: var(--grad-about);
+}
+
 /* --- Services Section --- */
 .services-grid {
     display: grid;
@@ -539,29 +603,30 @@ nav .container {
 .service-card {
     background: var(--card-bg);
     padding: 3rem 2rem;
-    border-radius: 8px;
+    border-radius: 16px;
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
     border-color: var(--accent-primary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 50, 150, 0.2);
 }
 
 .service-icon {
     width: 60px;
     height: 60px;
     margin: 0 auto 1.5rem;
-    background: var(--accent-primary);
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-light));
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .service-icon svg {
@@ -592,9 +657,25 @@ nav .container {
     text-align: center;
 }
 
+.feature-item {
+    background: var(--card-bg);
+    padding: 2.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-5px);
+}
+
 .feature-item i {
     font-size: 3rem;
-    color: var(--accent-primary);
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
     display: block;
 }
@@ -603,9 +684,10 @@ nav .container {
 .marquee {
     width: 100%;
     overflow: hidden;
-    background: var(--accent-blue);
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
     padding: 40px 0;
     white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .marquee-content {
@@ -632,50 +714,96 @@ nav .container {
 }
 
 /* --- Contact Section --- */
+#contact {
+    background: var(--grad-projects);
+    padding: 120px 0;
+}
+
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 5rem;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
 .contact-info h3 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--accent-primary);
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.contact-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .contact-detail {
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--accent-primary);
 }
 
 .contact-detail label {
-    display: block;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    color: var(--accent-primary);
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--accent-light);
 }
 
-.contact-detail p a {
-    color: inherit;
-    text-decoration: none;
-    transition: color var(--transition-speed);
+.contact-detail p {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin: 0;
 }
 
-.contact-detail p a:hover {
-    color: var(--accent-primary);
+.contact-form-wrapper {
+    background: var(--card-bg);
+    padding: 4rem;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.contact-form-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 30px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--accent-primary), transparent, var(--accent-light));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 .contact-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
 }
 
 .form-group.full {
@@ -684,53 +812,68 @@ nav .container {
 
 .contact-form input,
 .contact-form textarea {
-    padding: 1rem;
-    background: var(--bg-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
     color: var(--text-primary);
-    border-radius: 4px;
-    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-.contact-form textarea {
-    height: 150px;
-    resize: none;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(2, 6, 23, 0.6);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .submit-btn {
     grid-column: span 2;
-    padding: 1rem;
-    background: var(--accent-primary);
-    color: #000;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-blue-deep));
+    color: #fff;
     border: none;
+    border-radius: 12px;
     font-family: 'Bebas Neue';
-    font-size: 1.25rem;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
 }
 
 .submit-btn:hover {
-    background: #fff;
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px var(--accent-glow);
+    filter: brightness(1.2);
 }
 
 /* --- Footer --- */
 footer {
-    background: #000;
+    background: var(--grad-footer);
     color: #fff;
-    padding: 80px 0 20px;
+    padding: 100px 0 40px;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 4rem;
     margin-bottom: 4rem;
+    align-items: start;
 }
 
 .footer-logo h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .footer-links h4 {
@@ -763,7 +906,7 @@ footer {
     padding-top: 20px;
     text-align: center;
     font-size: 0.8rem;
-    color: #666;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* --- Responsive --- */
@@ -789,7 +932,8 @@ footer {
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
 
     /* Mobile Menu Implementation */
